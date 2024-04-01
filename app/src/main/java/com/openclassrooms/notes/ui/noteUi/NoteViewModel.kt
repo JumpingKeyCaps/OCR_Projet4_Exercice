@@ -30,8 +30,8 @@ class NoteViewModel: ViewModel() {
      **/
 
     /**
-     * Fetch note list
-     * Expose directly the Flow of the noteRepository
+     * Fetch the note list,
+     * by Exposing directly the Flow of the noteRepository
      * @return A Flow with the notes list.
      */
     val notes: Flow<List<Note>> =  notesRepository.notes
