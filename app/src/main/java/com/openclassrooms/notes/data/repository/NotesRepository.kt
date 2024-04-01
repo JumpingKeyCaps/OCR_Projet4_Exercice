@@ -1,20 +1,17 @@
 package com.openclassrooms.notes.data.repository
 
-import com.openclassrooms.notes.data.service.LocalNotesApiService
 import com.openclassrooms.notes.data.service.NotesApiService
 import com.openclassrooms.notes.model.Note
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
 /**
  * Repository class for the notes.
+ *
+ * Use dependency injection to get the the used Api service.
  */
-class NotesRepository {
-
-    /**
-     * The API service for interacting with notes.
-     */
-    private val notesApiService: NotesApiService = LocalNotesApiService()
+class NotesRepository @Inject constructor( private val notesApiService: NotesApiService) {
 
     /**
      * A flow that emits a list of all notes.
@@ -23,6 +20,7 @@ class NotesRepository {
 
     /**
      * Add a note to the list of notes
+     *
      * @param newNote The new note object to add to the list.
      */
     fun addNote(newNote:Note) = notesApiService.addNote(newNote)
