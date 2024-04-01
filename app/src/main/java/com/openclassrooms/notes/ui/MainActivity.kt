@@ -1,13 +1,14 @@
-package com.openclassrooms.notes
+package com.openclassrooms.notes.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.openclassrooms.notes.R
 import com.openclassrooms.notes.databinding.ActivityMainBinding
-import com.openclassrooms.notes.repository.NotesRepository
-import com.openclassrooms.notes.widget.NoteItemDecoration
-import com.openclassrooms.notes.widget.NotesAdapter
+import com.openclassrooms.notes.data.repository.NotesRepository
+import com.openclassrooms.notes.ui.widget.NoteItemDecoration
+import com.openclassrooms.notes.ui.widget.NotesAdapter
 import kotlinx.coroutines.launch
 
 /**
