@@ -19,4 +19,12 @@ interface NotesApiService {
      */
     fun getAllNotes(): MutableList<Note>
 
+    /**
+     * Remove a notes
+     * @param title null by default (can be omitted), used to remove by the title of the note.
+     * @param index null by default (can be omitted), used to remove by the index position of the note.
+     * @param noteObject null by default (can be omitted), used to remove by the object ref directly.
+     */
+    fun removeNote(index: Int? = null, noteObject:Note? = null, title: String? = null)
+
 }
