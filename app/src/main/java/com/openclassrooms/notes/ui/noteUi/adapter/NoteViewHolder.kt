@@ -1,4 +1,4 @@
-package com.openclassrooms.notes.ui.widget
+package com.openclassrooms.notes.ui.noteUi.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.notes.databinding.NoteBinding
