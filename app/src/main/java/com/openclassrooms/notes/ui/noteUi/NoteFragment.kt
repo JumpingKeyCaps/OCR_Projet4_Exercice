@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.openclassrooms.notes.R
-import com.openclassrooms.notes.data.repository.NotesRepository
 import com.openclassrooms.notes.databinding.FragmentNoteBinding
 import com.openclassrooms.notes.ui.noteUi.decoration.NoteItemDecoration
 import com.openclassrooms.notes.ui.noteUi.adapter.NotesAdapter
@@ -21,25 +20,35 @@ class NoteFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteBinding
     private val notesAdapter = NotesAdapter(emptyList())
-    private val notesRepository = NotesRepository()
+    private val noteViewModel:NoteViewModel = NoteViewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
+    /**
+     * - Life cycle -
+     *
+     * Called when the fragment create the root view.
+     *
+     * @param inflater the inflater to inflate the view.
+     * @param container the container where to inflate the view.
+     * @param savedInstanceState the bundle of the fragment.
+     */
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
         binding = FragmentNoteBinding.inflate(inflater,container,false)
         return binding.root
     }
 
+    /**
+     * - Life cycle -
+     *
+     * Called when the fragment view is created and ready.
+     *
+     * @param view the view root of the fragment.
+     * @param savedInstanceState the state bundle of the fragment.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initRecyclerView()
         initFABButton()
         collectNotes()
-
-
     }
 
     /**
@@ -53,12 +62,9 @@ class NoteFragment : Fragment() {
                     resources.getInteger(R.integer.span_count)
                 )
             )
-
             adapter = notesAdapter
         }
-
     }
-
 
     /**
      * Initializes the FAB button.
@@ -73,13 +79,12 @@ class NoteFragment : Fragment() {
         }
     }
 
-
     /**
-     * Collects notes from the repository and updates the adapter.
+     * Collects notes from the ViewModel and updates the adapter.
      */
     private fun collectNotes() {
         lifecycleScope.launch {
-            notesRepository.notes.collect {
+            noteViewModel.notes.collect {
                 notesAdapter.updateNotes(it)
             }
         }
