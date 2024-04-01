@@ -10,8 +10,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.openclassrooms.notes.R
 import com.openclassrooms.notes.data.repository.NotesRepository
 import com.openclassrooms.notes.databinding.FragmentNoteBinding
-import com.openclassrooms.notes.ui.widget.NoteItemDecoration
-import com.openclassrooms.notes.ui.widget.NotesAdapter
+import com.openclassrooms.notes.ui.noteUi.decoration.NoteItemDecoration
+import com.openclassrooms.notes.ui.noteUi.adapter.NotesAdapter
 import kotlinx.coroutines.launch
 
 /**
