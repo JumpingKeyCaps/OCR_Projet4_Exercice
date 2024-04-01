@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.openclassrooms.notes.R
 import com.openclassrooms.notes.databinding.ActivityMainBinding
 import com.openclassrooms.notes.ui.noteUi.NoteFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * The main activity for the app.
  */
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     /**
@@ -16,8 +18,11 @@ class MainActivity : AppCompatActivity() {
      */
     private lateinit var binding: ActivityMainBinding
 
-
-
+    /**
+     * Life Cycle -
+     * Called when the activity is created.
+     * @param savedInstanceState the saved state bundle.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
