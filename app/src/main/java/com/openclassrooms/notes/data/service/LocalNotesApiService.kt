@@ -7,13 +7,17 @@ import com.openclassrooms.notes.model.Note
  */
 class LocalNotesApiService : NotesApiService {
     //Utilisation d'une propriété déléguée
-    private val noteList by lazy {getAllNotes()}
+    private val noteList by lazy {generateDefaultNotes()}
 
     override fun addNote(note: Note) {
         noteList.add(note)
     }
 
     override fun getAllNotes(): MutableList<Note> {
+        return noteList
+    }
+
+    private fun generateDefaultNotes(): MutableList<Note>{
         return mutableListOf(
             Note("La vie est belle", "La vie est belle, pleine de choses à voir et à faire. Profitez de chaque moment et ne laissez jamais personne vous dire que vous ne pouvez pas faire ce que vous voulez."),
             Note("Ne laissez personne vous dire que vous ne pouvez pas faire quelque chose.", "Croyez en vous et en vos capacités. Ne laissez personne vous dire que vous ne pouvez pas faire quelque chose. Suivez vos rêves et ne laissez rien vous arrêter."),
@@ -26,7 +30,6 @@ class LocalNotesApiService : NotesApiService {
             Note("Passez du temps avec vos proches", "Ils sont les plus importants dans votre vie. Passez du temps avec vos proches et montrez-leur à quel point vous les aimez. Ils sont votre famille et vos amis."),
             Note("Risez et amusez-vous.", "La vie est trop courte pour être sérieuse tout le temps. Riez et amusez-vous. Passez du temps à faire les choses que vous aimez."),
         )
-
     }
 
 
