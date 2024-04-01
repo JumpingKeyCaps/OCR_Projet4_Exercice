@@ -11,16 +11,21 @@ import com.openclassrooms.notes.R
 import com.openclassrooms.notes.databinding.FragmentNoteBinding
 import com.openclassrooms.notes.ui.noteUi.decoration.NoteItemDecoration
 import com.openclassrooms.notes.ui.noteUi.adapter.NotesAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * The Fragment for the list of Notes Screen of the App.
  */
+@AndroidEntryPoint
 class NoteFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteBinding
     private val notesAdapter = NotesAdapter(emptyList())
-    private val noteViewModel:NoteViewModel = NoteViewModel()
+    @Inject
+    lateinit var noteViewModel: NoteViewModel
+
 
     /**
      * - Life cycle -
