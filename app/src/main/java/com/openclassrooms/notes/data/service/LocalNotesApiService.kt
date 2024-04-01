@@ -6,17 +6,65 @@ import com.openclassrooms.notes.model.Note
  * Implementation of the [NotesApiService] interface that stores note in local
  */
 class LocalNotesApiService : NotesApiService {
-    //Utilisation d'une propriété déléguée
+
+    /**
+     * Delegate property for the List of notes.
+     *
+     * the initialization will be deferred until the first time the list will be accessed.
+     * the use of "val" guarantees that generateDefaultNotes() is called only once.
+     * after this, the Note list will behave like a classic Mutable list (add/remove).
+     *
+     */
     private val noteList by lazy {generateDefaultNotes()}
 
+
+    /**
+     * Add a note in the list of note.
+     *
+     * @param note The note to add in the list of notes.
+     */
     override fun addNote(note: Note) {
         noteList.add(note)
     }
 
+
+    /**
+     * Delete a note in the list of notes.
+     *
+     * This method must take almost one argument of your choice to remove the Note.
+     * (by index (int) , by Object ref (Note), or by note title (String))
+     *
+     * @param title null by default (can be omitted), used to remove by the title of the note.
+     * @param index null by default (can be omitted), used to remove by the index position of the note.
+     * @param noteObject null by default (can be omitted), used to remove by the object ref directly.
+     */
+    override fun removeNote(index: Int?, noteObject:Note?, title: String?) {
+        when {
+            index != null -> noteList.removeAt(index)
+            noteObject != null -> noteList.remove(noteObject)
+            title != null -> noteList.removeIf { it.titre == title }
+            else -> throw IllegalArgumentException("Note not found")
+        }
+    }
+    /**
+     * Fetch the list of notes.
+     * Used to get the list of all the Note.
+     *
+     * @return A mutable list of Note objects.
+     */
     override fun getAllNotes(): MutableList<Note> {
         return noteList
     }
 
+
+    /**
+     * Generate a default list of notes.
+     *
+     * This method is used to populate our list with example list of notes.
+     * Used to the initialisation of the noteList delegate property.
+     *
+     * @return A mutable list of notes populate with notes examples.
+     */
     private fun generateDefaultNotes(): MutableList<Note>{
         return mutableListOf(
             Note("La vie est belle", "La vie est belle, pleine de choses à voir et à faire. Profitez de chaque moment et ne laissez jamais personne vous dire que vous ne pouvez pas faire ce que vous voulez."),
