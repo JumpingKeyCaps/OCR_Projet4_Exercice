@@ -61,9 +61,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
     testImplementation ("org.mockito:mockito-core:4.0.0")
     testImplementation ("org.mockito:mockito-inline:4.0.0")
     testImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
+
+
 }
 kapt {
     correctErrorTypes = true
